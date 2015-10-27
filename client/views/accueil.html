@@ -1,0 +1,10 @@
+<template name="accueil">
+{{#if currentUser}}
+Vous êtes connecté !
+<input type="submit" class="deconnexion" value="Se déconnecter"/>
+{{else}}
+{{> inscription}}
+<br>
+{{> connexion}}
+{{/if}}
+</template>
