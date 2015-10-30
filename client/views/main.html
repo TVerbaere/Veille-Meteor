@@ -1,5 +1,5 @@
 <head>
-  <title>Meteor Tchat</title>
+  <title>Le Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
@@ -7,6 +7,9 @@
 <body>
 </body>
 
-<template name="template-principal">
+<template name="main">
+  {{#if currentUser}}
+  <input type="submit" class="deconnexion" value="Se déconnecter"/>
+  {{/if}}
   {{> yield}}
 </template>

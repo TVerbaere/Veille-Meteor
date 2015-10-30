@@ -13,13 +13,13 @@ Accounts.validateNewUser( function(user) {
   // Vérification 2 : l'email entrée est déja utilisée :
   var emailDejaExistante = Meteor.users.find({"emails.address": user.emails[0].address}, {limit: 1}).count() > 0;
   if (emailDejaExistante) {
-    throw new Meteor.Error(403, "Votre email est déja utilisée par un autre membre.")
+    throw new Meteor.Error(403, "Votre email est déja utilisée par un autre membre.");
   }
 
   // Vérification 3 : le pseudo est deja utilisé :
   var pseudoDejaExistant = Meteor.users.find({"username": user.username}, {limit: 1}).count() > 0;
   if (pseudoDejaExistant) {
-    throw new Meteor.Error(403, "Le pseudo est déja utilisé par un autre membre.")
+    throw new Meteor.Error(403, "Le pseudo est déja utilisé par un autre membre.");
   }
 
   return true;

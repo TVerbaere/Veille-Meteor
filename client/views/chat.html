@@ -1,0 +1,18 @@
+<template name="chat">
+  <h1>Chat public</h1>
+
+  <div id="fil">
+    {{#each messages_du_chat}}
+      <div class="message">
+        <h3>{{pseudo}} dit le {{date}} :</h3>
+        <p>{{message}}</p>
+      </div>
+    {{/each}}
+  </div>
+
+  <form>
+    <legend>Envoyer un message</legend>
+    <input type="text" name="message-chat-public" placeholder="Votre message..."/><br>
+    <input type="submit" value="Envoyer"/>
+  </form>
+</template>

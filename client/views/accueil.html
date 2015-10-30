@@ -1,10 +1,9 @@
 <template name="accueil">
 {{#if currentUser}}
-Vous êtes connecté !
-<input type="submit" class="deconnexion" value="Se déconnecter"/>
+{{> chat}}
 {{else}}
-{{> inscription}}
-<br>
 {{> connexion}}
+<br>
+<a href="{{pathFor route='inscription'}}">S'inscrire maintenant</a>
 {{/if}}
 </template>

@@ -29,7 +29,7 @@ Template.inscription.events({
   }
 });
 
-Template.accueil.events({
+Template.main.events({
   "click .deconnexion": function(e) {
       Meteor.logout();
   }
@@ -46,7 +46,30 @@ Template.connexion.events({
     Meteor.loginWithPassword({
       username: pseudo
     }, mdp, function(err) {
-      alert(err.reason);
+      if (err.reason === 'Incorrect password')
+        alert("Le mot de passe ou le pseudo est incorrect.");
+      else
+        alert("Aucun utilisateur avec un tel pseudo n'a été trouvé.");
     });
+  }
+});
+
+Template.chat.events({
+  'submit form' : function(e) {
+    e.preventDefault();
+
+    var pseudo = Meteor.user().username;
+    var message = $('input[name="message-chat-public"]').val();
+
+    var post = {
+      contenu: message,
+      ecrivain: pseudo
+    };
+
+    if (message != "") {
+      $('input[name="message-chat-public"]').val("");
+      Meteor.call("ajouteMessage", post);
+    }
+
   }
 });

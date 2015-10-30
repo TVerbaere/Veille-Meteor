@@ -1,7 +1,11 @@
 Router.configure({
-  layoutTemplate: 'template-principal'
+  layoutTemplate: 'main'
 });
 
 Router.route('/', {
   name: 'accueil'
+});
+
+Router.route('/inscription', {
+  name: 'inscription'
 });
