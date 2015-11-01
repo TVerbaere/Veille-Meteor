@@ -1,5 +1,5 @@
 Template.inscription.events({
-  "submit form": function(e) {
+  "submit #form-inscription": function(e) {
     e.preventDefault();
 
     // Récupération des champs du formulaire d'inscription :
@@ -36,7 +36,7 @@ Template.main.events({
 });
 
 Template.connexion.events({
-  "submit form": function(e) {
+  "submit #form-connexion": function(e) {
     e.preventDefault();
 
     // Récupération des champs du formulaire de connexion :
@@ -55,7 +55,7 @@ Template.connexion.events({
 });
 
 Template.chat.events({
-  'submit form' : function(e) {
+  'submit #form-chat' : function(e) {
     e.preventDefault();
 
     var pseudo = Meteor.user().username;
@@ -63,12 +63,33 @@ Template.chat.events({
 
     var post = {
       contenu: message,
-      ecrivain: pseudo
+      ecrivain: pseudo,
+      channel: null
     };
 
     if (message != "") {
       $('input[name="message-chat-public"]').val("");
       Meteor.call("ajouteMessage", post);
+    }
+
+  }
+});
+
+Template.channels.events({
+  'submit #form-channel' : function(e) {
+    e.preventDefault();
+
+    var titre = $('input[name="titre-channel"]').val();
+
+    var channel = {
+      createur: Meteor.user().username,
+      createur_id: Meteor.user()._id,
+      titre: titre
+    };
+
+    if (titre != "") {
+      $('input[name="titre-channel"]').val("");
+      Meteor.call("ajouteChannel", channel);
     }
 
   }

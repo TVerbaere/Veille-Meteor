@@ -4,4 +4,10 @@ Deps.autorun(function() {
       Session.set("active", true);
     }
   });
+
+  Meteor.subscribe('channels', {
+    onReady : function() {
+      Session.set("active", true);
+    }
+  });
 });

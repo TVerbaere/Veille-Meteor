@@ -1,4 +1,5 @@
 <template name="chat">
+<div id="chat">
   <h1>Chat public</h1>
 
   <div id="fil">
@@ -10,9 +11,10 @@
     {{/each}}
   </div>
 
-  <form>
+  <form id="form-chat">
     <legend>Envoyer un message</legend>
     <input type="text" name="message-chat-public" placeholder="Votre message..."/><br>
     <input type="submit" value="Envoyer"/>
   </form>
+</div>
 </template>
