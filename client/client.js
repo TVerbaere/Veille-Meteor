@@ -15,3 +15,15 @@ Template.channels.helpers({
       return [];
   }
 });
+
+Template.channel.helpers({
+  fil : function() {
+    if (Session.get("active")) {
+      var path = Iron.Location.get().path.split('/');
+      var idchannel = parseInt(path[path.length-1]);
+      return Messages.find( {channel: idchannel}, {sort : {heure : -1}, limit : 25});
+    }
+    else
+      return [];
+  }
+});

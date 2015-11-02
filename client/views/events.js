@@ -94,3 +94,34 @@ Template.channels.events({
 
   }
 });
+
+Template.channels.events({
+  "click .channel": function(e) {
+      Router.go('/channel/'+this.id);
+  }
+})
+
+Template.channel.events({
+  'submit #form-chat-prive' : function(e) {
+    e.preventDefault();
+
+    var pseudo = Meteor.user().username;
+    var message = $('input[name="message-chat-prive"]').val();
+
+    var path = Iron.Location.get().path.split('/');
+    var idchannel = parseInt(path[path.length-1]);
+
+    console.log(idchannel);
+    var post = {
+      contenu: message,
+      ecrivain: pseudo,
+      channel: idchannel
+    };
+
+    if (message != "") {
+      $('input[name="message-chat-prive"]').val("");
+      Meteor.call("ajouteMessage", post);
+    }
+    
+  }
+});

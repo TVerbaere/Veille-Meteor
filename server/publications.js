@@ -1,5 +1,5 @@
-Meteor.publish('messages', function() {
-  return Messages.find( {channel: null}, {sort : {heure : -1}, limit : 25});
+Meteor.publish('messages', function(a) {
+  return Messages.find( {channel: a}, {sort : {heure : -1}, limit : 25});
 });
 
 Meteor.publish('channels', function() {
