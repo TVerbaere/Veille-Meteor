@@ -10,10 +10,7 @@ Router.route('/inscription', {
   name: 'inscription'
 });
 
-Router.route('/membres', {
-  name: 'membres'
-});
-
+// TODO: on ne doit pas pouvoir y aller déconnecté
 Router.route('/membres/:_pseudo, /profil', {
   name: 'profil',
   data: function() {
@@ -29,6 +26,7 @@ Router.route('/membres/:_pseudo, /profil', {
   }
 });
 
+// TODO: on ne doit pas pouvoir y aller déconnecté
 Router.route('/channel/:_id', {
   name: 'channel',
   data: function() {
