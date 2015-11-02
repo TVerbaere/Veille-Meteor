@@ -111,7 +111,6 @@ Template.channel.events({
     var path = Iron.Location.get().path.split('/');
     var idchannel = parseInt(path[path.length-1]);
 
-    console.log(idchannel);
     var post = {
       contenu: message,
       ecrivain: pseudo,
