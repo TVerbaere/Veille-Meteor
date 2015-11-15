@@ -32,6 +32,7 @@ Template.inscription.events({
 Template.main.events({
   "click .deconnexion": function(e) {
       Meteor.logout();
+      Router.go('accueil');
   }
 });
 
@@ -46,10 +47,12 @@ Template.connexion.events({
     Meteor.loginWithPassword({
       username: pseudo
     }, mdp, function(err) {
-      if (err.reason === 'Incorrect password')
-        alert("Le mot de passe ou le pseudo est incorrect.");
-      else
-        alert("Aucun utilisateur avec un tel pseudo n'a été trouvé.");
+      if (err) {
+        if (err.reason === 'Incorrect password')
+          alert("Le mot de passe ou le pseudo est incorrect.");
+        else
+          alert("Aucun utilisateur avec un tel pseudo n'a été trouvé.");
+      }
     });
   }
 });
@@ -121,6 +124,20 @@ Template.channel.events({
       $('input[name="message-chat-prive"]').val("");
       Meteor.call("ajouteMessage", post);
     }
-    
+
+  }
+});
+
+Template.profil.events({
+  'submit #form-profil' : function(e) {
+    e.preventDefault();
+
+    var path = Iron.Location.get().path.split('/');
+
+    var pseudo = path[path.length-1];
+    var id_channel = parseInt($('#form-profil option:selected').val());
+
+    Meteor.call("ajoutedansChannel", pseudo, id_channel);
+
   }
 });

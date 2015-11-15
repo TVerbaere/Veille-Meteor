@@ -16,6 +16,17 @@ Template.channels.helpers({
   }
 });
 
+Template.profil.helpers({
+  utilisateur_channels : function(pseudo) {
+      return Channels.find( {createur: pseudo}, {sort : {heure : -1}, limit : 25});
+  },
+  estIdentique: function (utilisateur_connecte, utilisateur) {
+    if (utilisateur_connecte && utilisateur) {
+      return utilisateur_connecte.username !== utilisateur.username;
+    }
+  }
+});
+
 Template.channel.helpers({
   fil : function() {
     if (Session.get("active")) {

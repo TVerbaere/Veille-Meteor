@@ -1,0 +1,22 @@
+<template name="profil">
+
+  <div>
+    <p>Pseudo : {{utilisateur.[0].username}}</p>
+    <p>Nom : {{utilisateur.[0].profile.name}}</p>
+    <p>Prénom : {{utilisateur.[0].profile.surname}}</p>
+    <p>Email : {{utilisateur.[0].emails.[0].address}}</p>
+    <p>Inscrit depuis : {{utilisateur.[0].createdAt}}</p>
+  </div>
+
+  {{#if estIdentique currentUser utilisateur.[0]}}
+  <form id="form-profil">
+    <select>
+      {{#each utilisateur_channels currentUser.username}}
+      <option value="{{id}}">{{titre}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" value="Inviter {{utilisateur.[0].username}}"/>
+  </form>
+  {{/if}}
+
+</template>
