@@ -8,8 +8,11 @@
 </body>
 
 <template name="main">
-  {{#if currentUser}}
-  <input type="submit" class="deconnexion" value="Se déconnecter"/>
-  {{/if}}
-  {{> yield}}
+  <div id="master">
+    <div id="header"></div>
+    <div id="content">
+      {{> yield}}
+    </div>
+    <div id="footer">Veille Technologique - IAGL 2015-2016 - MétéorJS</div>
+  </div>
 </template>

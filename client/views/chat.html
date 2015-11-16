@@ -1,19 +1,18 @@
 <template name="chat">
-<div id="chat">
-  <h1>Chat public</h1>
-
+<div>
+  <h2>Chat public</h2>
   <div id="fil">
     {{#each messages_du_chat}}
       <div class="message">
-        <h3>{{pseudo}} dit le {{date}} :</h3>
+        <h3><a href="/membre/{{pseudo}}">{{pseudo}}</a> dit le {{formatDate date}} :</h3>
         <p>{{message}}</p>
       </div>
     {{/each}}
   </div>
 
   <form id="form-chat">
-    <legend>Envoyer un message</legend>
-    <input type="text" name="message-chat-public" placeholder="Votre message..."/><br>
+    <h2>Envoyer un message</h2>
+    <textarea rows="4" cols="50" type="text" name="message-chat-public" placeholder="Votre message..."></textarea><br>
     <input type="submit" value="Envoyer"/>
   </form>
 </div>

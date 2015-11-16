@@ -1,12 +1,12 @@
 <template name="channel">
-
+{{> channels}}
 <div id="channel-fil">
-  <h1>Channel {{idchannel}}</h1>
+  <h2>Channel {{channel.[0].titre}}</h2>
 
   <div id="fil">
     {{#each fil}}
       <div class="message">
-        <h3>{{pseudo}} dit le {{date}} :</h3>
+        <h3><a href="/membre/{{pseudo}}">{{pseudo}}</a> dit le {{formatDate date}} :</h3>
         <p>{{message}}</p>
       </div>
     {{/each}}
@@ -14,7 +14,7 @@
 
   <form id="form-chat-prive">
     <legend>Envoyer un message</legend>
-    <input type="text" name="message-chat-prive" placeholder="Votre message..."/><br>
+    <textarea rows="4" cols="50" type="text" name="message-chat-prive" placeholder="Votre message..."></textarea><br>
     <input type="submit" value="Envoyer"/>
   </form>
 </div>

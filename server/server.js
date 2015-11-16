@@ -10,9 +10,7 @@ Meteor.methods ({
   },
 
   ajouteChannel : function(channel) {
-      var idc = Channels.find( {}, {sort : {id : -1}, limit : 1}).count();
       Channels.insert({
-        id : idc+1,
         titre : channel.titre,
         createur : channel.createur,
         utilisateurs : [channel.createur_id],
@@ -21,7 +19,7 @@ Meteor.methods ({
   },
 
   ajoutedansChannel : function(pseudo, id_channel) {
-    var channel = Channels.findOne({'id': id_channel});
+    var channel = Channels.findOne({'_id': id_channel});
     var utilisateur = Meteor.users.findOne({'username': pseudo});
 
     var id_utilisateur = utilisateur._id;
@@ -31,7 +29,7 @@ Meteor.methods ({
 
       tab.splice(0, 0, id_utilisateur);
 
-      Channels.update({ "id" : id_channel },{
+      Channels.update({ "_id" : id_channel },{
         $set: { "utilisateurs": tab },
         $currentDate: { "lastModified": true }
       }

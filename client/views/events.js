@@ -36,6 +36,12 @@ Template.main.events({
   }
 });
 
+Template.main.events({
+  "click .accueil": function(e) {
+      Router.go('accueil');
+  }
+});
+
 Template.connexion.events({
   "submit #form-connexion": function(e) {
     e.preventDefault();
@@ -62,7 +68,7 @@ Template.chat.events({
     e.preventDefault();
 
     var pseudo = Meteor.user().username;
-    var message = $('input[name="message-chat-public"]').val();
+    var message = $('textarea[name="message-chat-public"]').val();
 
     var post = {
       contenu: message,
@@ -71,7 +77,7 @@ Template.chat.events({
     };
 
     if (message != "") {
-      $('input[name="message-chat-public"]').val("");
+      $('textarea[name="message-chat-public"]').val("");
       Meteor.call("ajouteMessage", post);
     }
 
@@ -93,26 +99,21 @@ Template.channels.events({
     if (titre != "") {
       $('input[name="titre-channel"]').val("");
       Meteor.call("ajouteChannel", channel);
+      $("#fil").scrollTop($("#fil").prop("scrollHeight"));
     }
 
   }
 });
-
-Template.channels.events({
-  "click .channel": function(e) {
-      Router.go('/channel/'+this.id);
-  }
-})
 
 Template.channel.events({
   'submit #form-chat-prive' : function(e) {
     e.preventDefault();
 
     var pseudo = Meteor.user().username;
-    var message = $('input[name="message-chat-prive"]').val();
+    var message = $('textarea[name="message-chat-prive"]').val();
 
     var path = Iron.Location.get().path.split('/');
-    var idchannel = parseInt(path[path.length-1]);
+    var idchannel = path[path.length-1];
 
     var post = {
       contenu: message,
@@ -121,7 +122,7 @@ Template.channel.events({
     };
 
     if (message != "") {
-      $('input[name="message-chat-prive"]').val("");
+      $('textarea[name="message-chat-prive"]').val("");
       Meteor.call("ajouteMessage", post);
     }
 
@@ -135,7 +136,7 @@ Template.profil.events({
     var path = Iron.Location.get().path.split('/');
 
     var pseudo = path[path.length-1];
-    var id_channel = parseInt($('#form-profil option:selected').val());
+    var id_channel = $('#form-profil option:selected').val();
 
     Meteor.call("ajoutedansChannel", pseudo, id_channel);
 

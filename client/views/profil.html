@@ -1,22 +1,25 @@
 <template name="profil">
+  {{> channels}}
+<div class="message">
+  <h2>Qui se cache derrière le pseudo '{{utilisateur.[0].username}}' ?</h2>
 
   <div>
     <p>Pseudo : {{utilisateur.[0].username}}</p>
     <p>Nom : {{utilisateur.[0].profile.name}}</p>
     <p>Prénom : {{utilisateur.[0].profile.surname}}</p>
     <p>Email : {{utilisateur.[0].emails.[0].address}}</p>
-    <p>Inscrit depuis : {{utilisateur.[0].createdAt}}</p>
+    <p>Inscrit depuis : {{formatDate utilisateur.[0].createdAt}}</p>
   </div>
 
   {{#if estIdentique currentUser utilisateur.[0]}}
   <form id="form-profil">
     <select>
       {{#each utilisateur_channels currentUser.username}}
-      <option value="{{id}}">{{titre}}</option>
+      <option value="{{_id}}">{{titre}}</option>
       {{/each}}
     </select>
     <input type="submit" value="Inviter {{utilisateur.[0].username}}"/>
   </form>
   {{/if}}
-
+</div>
 </template>

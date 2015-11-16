@@ -1,6 +1,6 @@
 Deps.autorun(function() {
   var path = Iron.Location.get().path.split('/');
-  var idchannel = parseInt(path[path.length-1]) || null;
+  var idchannel = path[path.length-1] || null;
 
   Meteor.subscribe('messages',idchannel, {
     onReady : function() {
@@ -19,4 +19,5 @@ Deps.autorun(function() {
       Session.set("active", true);
     }
   });
+
 });

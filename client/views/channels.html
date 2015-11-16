@@ -1,18 +1,22 @@
 <template name="channels">
 <div id="channels-liste">
-  <h1>Vos channels</h1>
+
+  <input type="submit" class="accueil" value="Retour à l'accueil"/>
+  <input type="submit" class="deconnexion" value="Se déconnecter"/>
+
+  <h2>Vos channels</h2>
 
   <div id="fil-channels">
     {{#each channels}}
       <div class="channel">
-        <h3>{{titre}}</h3>
+        <a href="/channel/{{_id}}">{{titre}}</a>
         <p>créée par {{createur}}</p>
       </div>
     {{/each}}
   </div>
 
   <form id="form-channel">
-    <legend>Créer une nouvelle channel :</legend>
+    <h2>Créer une nouvelle channel :</h2>
     <input type="text" name="titre-channel" placeholder="Titre de la channel..."/><br>
     <input type="submit" value="Créer"/>
   </form>
