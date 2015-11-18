@@ -1,126 +1,273 @@
+/*
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Accumen
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120712
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: underline;
+	color: #FF381A;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 body {
-    font-family: sans-serif;
-    background: #132431;
-    padding: 0;
-    margin: 0;
+	line-height: 1.75em;
+	background: #A9D0D6;
+	font-size: 11.5pt;
+	color: #5A6466;
 }
 
-h1 { margin: 0; padding: 60px 10px 0 0 ; color:#444; text-align:right}
-h2 { font-size: medium; margin: 0; padding: 1em 0 0 0;}
-h2.date { font-size: x-small; color: #aaa; padding: 0; }
-#channels-liste h2 { background: white; font-size: small; padding: 0.25em; border-top: 1px solid #eee; }
-#channels-liste h3 { font-size: x-small; padding: 0; }
-
-p { line-height: 150%; }
-
-acronym { cursor: help; border-bottom: dashed 1px; }
-
-input,select {
-		width: 10em;
-		margin: 0.5em;
-    background: #f2f2f2;
-    border: 1px gray dotted;
-}
-input:hover { background: white; }
-
-input.button {
-    background: #ccc;
-    border: 1px gray solid;
+body,input {
+	font-family: Kreon, serif;
 }
 
-textarea {
-    border: 1px gray dotted;
+br.clearfix {
+	clear: both;
 }
 
-img {
-    border: 0;
+h1,h2,h3,h4 {
+	text-transform: uppercase;
+	font-weight: normal;
 }
 
-
-hr { border: 1px gray solid; margin: 1em 12em; }
-
-div#master {
-    width: 700px;
-    margin: 0 auto;
-
-    background: #444;
+h2 {
+	font-size: 1.5em;
+	text-align: center;
 }
 
-#header {
-    color: white;
-    background:#132431 url('/images/header.jpg') no-repeat;
-	height:163px;
+h2,h3,h4 {
+	font-family: "Open Sans", sans-serif;
+	color: #2A3436;
+	margin-bottom: 1em;
 }
 
+h3 {
+	font-size: 1.25em;
+}
 
+h4 {
+	font-size: 1em;
+}
 
+img.alignleft {
+	float: left;
+	margin: 5px 30px 20px 0;
+}
 
-a:link { color: #14245E; text-decoration: underline; }
-a:visited { color: #14245E; text-decoration: underline; }
-a:link:hover { text-decoration: none; }
-a:visited:hover { text-decoration: none; }
+img.aligntop {
+	margin: 5px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+ul {
+	margin-bottom: 1.5em;
+}
+
+ul h4 {
+	margin-bottom: 0.35em;
+}
+
+a {
+	color: #2A3436;
+}
+
+.box {
+	margin: 0 0 50px 0;
+}
 
 #content {
-    background: white;
-    border-top: #eee solid 1em;
-    font-size: small;
-    color: #444;
-    text-align: justify;
-    padding: 1em 0;
-		min-height: 600px;
-}
-html>body #content { border-top: #eee solid 1em; }
-
-div.message {
-    margin: 0 15em 0 1em;
-    border-bottom: #eee solid 1px;
-    border-right: #eee solid 1px;
-    padding: 0 1.5em 0 1em;
-}
-
-
-div#channels-liste {
-
-    background: #eee;
-    width: 13em;
-    float: right;
-    margin: 0 1px 1em 0;
-    margin-bottom: 0;
-    color: #777;
-    clear: both;
-}
-
-div#channels-liste a { font-size:12px; }
-div#channels-liste p { font-size:12px; margin: 1em; }
-div#channels-liste h2 { text-align: center; margin: 0; }
-div#channels-liste ul { padding-left: 1.5em; font-size: 20px; margin-left: 0; text-align: left; }
-div#channels-liste li a:hover { background-color:#fff;}
-div#channels-liste img { display: block; margin: auto; }
-
-ul { padding: 0 0 0 3em; }
-ul.links { list-style-type: none; }
-
-div.border {
-    border: #eee solid thick;
-    border-right: none;
+	padding: 0;
+	width: 615px;
+	margin: 0 0 0 285px;
 }
 
 #footer {
-    background: #444;
-    color: #aaa;
-    font-size: x-small;
-    text-align: left;
-	padding:0 0 0 5px;
-	font-size:11px;
+	padding: 50px 0 80px 0;
+	text-align: center;
+	text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
+	color: #587477;
 }
 
-#bottommenu {
-    background: #444;
-    font-size: x-small;
-    text-align: center;
-    color: #aaa
+#footer a {
+	color: #587477;
 }
-#bottommenu a { color: #aaa }
+
+#header {
+	height: 100px;
+	padding: 40px;
+	position: relative;
+}
+
+#logo {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	height: 130px;
+	line-height: 130px;
+}
+
+#logo a {
+	color: #2A3436;
+	text-decoration: none;
+}
+
+#logo h1 {
+	font-family: "Open Sans", sans-serif;
+	font-size: 3em;
+}
+
+#menu {
+	line-height: 57px;
+	position: absolute;
+	right: 40px;
+	top: 76px;
+	height: 57px;
+	font-family: "Open Sans", sans-serif;
+}
+
+#menu a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #1C1C1C;
+	font-size: 1.2em;
+}
+
+#menu ul {
+	padding: 0 20px 0 20px;
+	list-style: none;
+}
+
+#menu ul li {
+	display: inline;
+	padding: 10px 10px 10px 10px;
+	margin: 0 8px 0 8px;
+}
+
+#menu ul li.active {
+	background: #F2EBDE;
+	border: solid 1px #BFB5A4;
+	box-shadow: inset 0px 0px 0px 1px #fff;
+	text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+}
+
+#menu ul li.active a {
+	color: #403B31;
+}
+
+#page {
+	margin: 0;
+	position: relative;
+	width: 900px;
+	height: 630px;
+	padding: 20px 40px 0 40px;
+}
+
+#page .section-list {
+	padding-left: 0;
+	list-style: none;
+}
+
+#page .section-list li {
+	padding: 25px 0 25px 0;
+	clear: both;
+}
+
+#page ul {
+	list-style: none;
+}
+
+#page ul li {
+	border-top: solid 1px #DDD;
+	padding: 10px 0 10px 0;
+}
+
+#page ul li.first {
+	padding-top: 0;
+	border-top: 0;
+}
+
+#page-bottom {
+	padding: 40px 40px 0 40px;
+	color: #302F2C;
+	background: #F2EBDE;
+	position: relative;
+	width: 898px;
+	border-top: solid 1px #BFB5A4;
+	box-shadow: inset 0px 0px 0px 1px #fff;
+	text-shadow: 1px 1px 0px rgba(255,255,255,0.9);
+}
+
+#page-bottom a {
+	color: #1B1A18;
+}
+
+#page-bottom h2, #page-bottom h3, #page-bottom h4 {
+	color: #3F3D39;
+}
+
+#page-bottom ul {
+	list-style: none;
+}
+
+#page-bottom ul li {
+	border-top: solid 1px #BAB5AB;
+	padding: 10px 0 10px 0;
+}
+
+#page-bottom ul li.first {
+	border-top: 0;
+	padding-top: 0;
+}
+
+#page-bottom-content {
+	width: 615px;
+	margin: 0 0 0 285px;
+}
+
+#page-bottom-channels-liste {
+	float: left;
+	width: 250px;
+}
+
+#channels-liste {
+	position: relative;
+	left: -20px;
+	top: -20px;
+	float: left;
+	width: 240px;
+	background: #EEF5F6;
+	padding: 20px;
+	border: solid 1px #D6E0E2;
+	margin: 0 10px 0 0;
+	text-shadow: 1px 1px 0px rgba(255,255,255,1);
+	box-shadow: inset 0px 0px 0px 1px #fff;
+}
+
+#wrapper {
+	width: 978px;
+	position: relative;
+	background: #FFF;
+	margin: 0 auto 0 auto;
+	box-shadow: 0px 0px 150px 0px rgba(0,0,0,0.15);
+	border: solid 1px #82A7AD;
+	border-top: 0;
+}
 
 .channel {
 	text-align: center;
@@ -136,6 +283,14 @@ textarea {
 }
 
 #fil-channels {
-    height: 300px;
+    height: 350px;
     overflow-y: scroll;
+}
+
+input {
+	margin-bottom : 0.2em;
+}
+
+li {
+	cursor: pointer;
 }

@@ -35,6 +35,14 @@ Meteor.methods ({
       }
     )
   }
+},
+
+supprimerMessageduChannel : function(channel) {
+  Messages.remove({ channel : channel});
+},
+
+supprimerChannel : function(channel) {
+  Channels.remove(channel._id);
 }
 
 });

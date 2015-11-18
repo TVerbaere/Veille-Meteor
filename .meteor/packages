@@ -2,3 +2,4 @@ standard-app-packages
 iron:router
 accounts-base
 accounts-password
+momentjs:moment

@@ -37,6 +37,21 @@ Template.main.events({
 });
 
 Template.main.events({
+  "click .inscription": function(e) {
+      Router.go('inscription');
+  }
+});
+
+Template.channels.events({
+  "click .supchannel": function(e) {
+    // sup this dans channel
+    Meteor.call("supprimerMessageduChannel", this);
+    // sup les messages dont channel est this
+    Meteor.call("supprimerChannel", this);
+  }
+});
+
+Template.main.events({
   "click .accueil": function(e) {
       Router.go('accueil');
   }
@@ -99,7 +114,6 @@ Template.channels.events({
     if (titre != "") {
       $('input[name="titre-channel"]').val("");
       Meteor.call("ajouteChannel", channel);
-      $("#fil").scrollTop($("#fil").prop("scrollHeight"));
     }
 
   }
@@ -142,3 +156,15 @@ Template.profil.events({
 
   }
 });
+
+
+Template.chat.rendered=function(){
+
+  this.autorun(function(){
+
+    Tracker.afterFlush(function(){
+      console.log("test");
+
+    }.bind(this));
+  }.bind(this));
+};

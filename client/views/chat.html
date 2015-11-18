@@ -1,17 +1,17 @@
 <template name="chat">
-<div>
+<div id="content">
   <h2>Chat public</h2>
   <div id="fil">
     {{#each messages_du_chat}}
       <div class="message">
-        <h3><a href="/membre/{{pseudo}}">{{pseudo}}</a> dit le {{formatDate date}} :</h3>
+        <h4><a href="/membre/{{pseudo}}">{{pseudo}}</a> dit le {{formatDate date}} :</h4>
         <p>{{message}}</p>
       </div>
     {{/each}}
   </div>
 
   <form id="form-chat">
-    <h2>Envoyer un message</h2>
+    <h2>Envoyer un message :</h2>
     <textarea rows="4" cols="50" type="text" name="message-chat-public" placeholder="Votre message..."></textarea><br>
     <input type="submit" value="Envoyer"/>
   </form>

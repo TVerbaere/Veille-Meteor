@@ -1,5 +1,5 @@
 UI.registerHelper('formatDate', function(date) {
-  return date.toLocaleFormat("%d/%m/%Y, %H:%M");
+  return moment(date).format("DD/MM/YYYY, HH:mm");
 });
 
 Template.chat.helpers({

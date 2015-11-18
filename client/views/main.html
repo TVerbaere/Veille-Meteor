@@ -8,11 +8,26 @@
 </body>
 
 <template name="main">
-  <div id="master">
-    <div id="header"></div>
-    <div id="content">
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+					<h1><a href="#">Chat Rabia</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li class="first active"><a class="accueil">Accueil</a></li>
+            {{#if currentUser}}
+						<li><a class="deconnexion">Se déconnecter</a></li>
+            {{else}}
+            <li><a class="inscription">S'inscrire</a></li>
+            {{/if}}
+					</ul>
+					<br class="clearfix" />
+				</div>
+    </div>
+    <div id="page">
       {{> yield}}
     </div>
-    <div id="footer">Veille Technologique - IAGL 2015-2016 - MétéorJS</div>
   </div>
+  <div id="footer">Veille Technologique - IAGL 2015-2016 - MétéorJS</div>
 </template>
