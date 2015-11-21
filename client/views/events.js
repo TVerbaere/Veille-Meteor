@@ -156,15 +156,3 @@ Template.profil.events({
 
   }
 });
-
-
-Template.chat.rendered=function(){
-
-  this.autorun(function(){
-
-    Tracker.afterFlush(function(){
-      console.log("test");
-
-    }.bind(this));
-  }.bind(this));
-};
