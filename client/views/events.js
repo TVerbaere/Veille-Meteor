@@ -50,7 +50,7 @@ Template.inscription.events({
       username: pseudo,
       email: email,
       password: mdp,
-      profile: {surname: prenom, name: nom}
+      profile: {surname: nom, name: prenom}
     };
 
     // On créé l'utilisateur en utilisant le paquet Accounts :
@@ -190,6 +190,7 @@ Template.profil.events({
 // Suppression de la channel : clic sur X (template channels).
 Template.channels.events({
   "click .supchannel": function(e) {
+    e.preventDefault();
     // On supprime les messages se trouvant dans la channel
     Meteor.call("supprimerMessageduChannel", this);
     // On supprime la channel en elle même

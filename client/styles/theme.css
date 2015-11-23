@@ -174,7 +174,7 @@ a {
 	margin: 0;
 	position: relative;
 	width: 900px;
-	height: 630px;
+	min-height: 630px;
 	padding: 20px 40px 0 40px;
 }
 
@@ -287,10 +287,10 @@ textarea {
     overflow-y: scroll;
 }
 
-input {
-	margin-bottom : 0.2em;
-}
-
 li {
 	cursor: pointer;
+}
+
+#channel-fil {
+	margin-left: 300px;
 }
