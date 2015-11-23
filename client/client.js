@@ -50,3 +50,24 @@ Template.channel.helpers({
       return [];
   }
 });
+
+Template.channel.helpers({
+  utilisateurbyId : function(id_utilisateur) {
+      var utilisateur = Meteor.users.findOne({'_id': id_utilisateur});
+      return utilisateur.profile.name+" "+utilisateur.profile.surname+" ("+utilisateur.username+")";
+  },
+  estpasAuteur: function (id_utilisateur) {
+    // On récupère l'identifiant de la channel de l'url :
+    var path = Iron.Location.get().path.split('/');
+    var idchannel = path[path.length-1];
+
+    // On récupère l'utilisateur dont l'id est en paramètre :
+    var utilisateur = Meteor.users.findOne({'_id': id_utilisateur.toString()});
+    // On récupère la channel dont l'id est dans l'url :
+    var channel = Channels.findOne({'_id': idchannel});
+
+    if (utilisateur) {
+      return channel.createur != id_utilisateur.username;
+    }
+  }
+});

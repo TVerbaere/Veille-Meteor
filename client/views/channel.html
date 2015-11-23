@@ -3,6 +3,17 @@
 <div id="channel-fil">
   <h2>Channel {{channel.[0].titre}}</h2>
 
+  Participants :
+  <ul>
+    {{#each channel.[0].utilisateurs}}
+      <li>{{utilisateurbyId this}}
+          {{#if estpasAuteur this}}
+          <input type="submit" class="suputilisateur" title="supprimer" value="X"/>
+          {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+
   <div id="fil">
     {{#each fil}}
       <div class="message">

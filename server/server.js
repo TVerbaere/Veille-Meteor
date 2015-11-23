@@ -51,6 +51,26 @@ Meteor.methods ({
   // Permet de supprimer une channel spécifiée en paramètre.
   supprimerChannel : function(channel) {
     Channels.remove(channel._id);
+  },
+
+  // Permet de supprimer un utilisateur dont l'identifiant est spécificié en paramètre d'une channel dont l'identifiant est également spécifié.
+  supprimerduChannel : function(id_utilisateur, id_channel) {
+    // On retrouve la channel et l'utilisateur dont il est question :
+    var channel = Channels.findOne({'_id': id_channel});
+
+    var tab = channel.utilisateurs;
+    var index = 0;
+
+    // Si l'utilisateur est présent dans le tableau on le supprime
+    if (index = tab.indexOf(id_utilisateur) != -1) {
+      // On le supprime dans le tableau des utilisateurs :
+      var tab2 = tab.splice(index, 1);
+
+      Channels.update({ "_id" : id_channel },{
+        $set: { "utilisateurs": tab2 },
+        $currentDate: { "lastModified": true }
+      }
+      )}
   }
 
 });

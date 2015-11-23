@@ -50,7 +50,7 @@ Template.inscription.events({
       username: pseudo,
       email: email,
       password: mdp,
-      profile: {surname: prenom, name: nom}
+      profile: {surname: nom, name: prenom}
     };
 
     // On créé l'utilisateur en utilisant le paquet Accounts :
@@ -190,9 +190,23 @@ Template.profil.events({
 // Suppression de la channel : clic sur X (template channels).
 Template.channels.events({
   "click .supchannel": function(e) {
+    e.preventDefault();
     // On supprime les messages se trouvant dans la channel
     Meteor.call("supprimerMessageduChannel", this);
     // On supprime la channel en elle même
     Meteor.call("supprimerChannel", this);
+  }
+});
+
+// Suppression d'un utilisateur d'une channel': clic sur X (template channel).
+Template.channel.events({
+  "click .suputilisateur": function(e) {
+    e.preventDefault();
+
+    // On récupère l'id de la channel :
+    var path = Iron.Location.get().path.split('/');
+
+    var id_channel = path[path.length-1];
+    Meteor.call("supprimerduChannel", this.toString(), id_channel);
   }
 });
