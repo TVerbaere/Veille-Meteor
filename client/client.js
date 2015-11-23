@@ -1,7 +1,11 @@
+// Fichier contenant les helpers de l'application.
+
+// Helper permettant le formatage des dates (accessible partout) :
 UI.registerHelper('formatDate', function(date) {
   return moment(date).format("DD/MM/YYYY, HH:mm");
 });
 
+// Helper permettant d'initialiser les messages du chat global (template chat).
 Template.chat.helpers({
   messages_du_chat : function() {
     if (Session.get("active")) {
@@ -12,6 +16,7 @@ Template.chat.helpers({
   }
 });
 
+// Helper permettant d'initialiser les channels de l'utilisateur (template channels).
 Template.channels.helpers({
   channels : function() {
     if (Session.get("active"))
@@ -21,6 +26,7 @@ Template.channels.helpers({
   }
 });
 
+// Helper permettant d'initialiser la page de profil d'un utilisateur (template profil).
 Template.profil.helpers({
   utilisateur_channels : function(pseudo) {
       return Channels.find( {createur: pseudo}, {sort : {heure : -1}});
@@ -32,6 +38,7 @@ Template.profil.helpers({
   }
 });
 
+// Helper permettant d'initialiser les messages d'un channel (template channel).
 Template.channel.helpers({
   fil : function() {
     if (Session.get("active")) {

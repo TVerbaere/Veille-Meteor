@@ -1,3 +1,39 @@
+// Fichiers contenant les évenements de l'application.
+
+
+//                                **************** Evenements liés au menu ****************
+
+
+
+// Déconnexion lors d'un clic sur le bouton "déconnexion" (template main).
+Template.main.events({
+  "click .deconnexion": function(e) {
+      // Déconnexion + Redirection vers l'accueil
+      Meteor.logout();
+      Router.go('accueil');
+  }
+});
+
+// Redirection vers le formulaire d'inscription lors d'un clic sur le bouton "inscription" (template main).
+Template.main.events({
+  "click .inscription": function(e) {
+      Router.go('inscription');
+  }
+});
+
+//
+Template.main.events({
+  "click .accueil": function(e) {
+      Router.go('accueil');
+  }
+});
+
+
+//                                **************** Submit de formulaires ****************
+
+
+
+// Submit du formulaire d'inscription (template inscription).
 Template.inscription.events({
   "submit #form-inscription": function(e) {
     e.preventDefault();
@@ -29,34 +65,7 @@ Template.inscription.events({
   }
 });
 
-Template.main.events({
-  "click .deconnexion": function(e) {
-      Meteor.logout();
-      Router.go('accueil');
-  }
-});
-
-Template.main.events({
-  "click .inscription": function(e) {
-      Router.go('inscription');
-  }
-});
-
-Template.channels.events({
-  "click .supchannel": function(e) {
-    // sup this dans channel
-    Meteor.call("supprimerMessageduChannel", this);
-    // sup les messages dont channel est this
-    Meteor.call("supprimerChannel", this);
-  }
-});
-
-Template.main.events({
-  "click .accueil": function(e) {
-      Router.go('accueil');
-  }
-});
-
+// Submit du formulaire de connexion (template connexion).
 Template.connexion.events({
   "submit #form-connexion": function(e) {
     e.preventDefault();
@@ -65,6 +74,7 @@ Template.connexion.events({
     var pseudo = $('input[name="connexion-pseudo"]').val();
     var mdp = $('input[name="connexion-mdp"]').val();
 
+    // On essaye de se logger, en utilisant l'excellent paquet Accounts.
     Meteor.loginWithPassword({
       username: pseudo
     }, mdp, function(err) {
@@ -78,19 +88,23 @@ Template.connexion.events({
   }
 });
 
+// Submit du formulaire d'envoi de message dans le chat global (template chat).
 Template.chat.events({
   'submit #form-chat' : function(e) {
     e.preventDefault();
 
+    // On récupère le pseudo et le message du textarea :
     var pseudo = Meteor.user().username;
     var message = $('textarea[name="message-chat-public"]').val();
 
+    // On créé le post :
     var post = {
       contenu: message,
       ecrivain: pseudo,
       channel: null
     };
 
+    // Si le message n'est pas vide on fait un appel au serveur (méthode ajouteMessage) :
     if (message != "") {
       $('textarea[name="message-chat-public"]').val("");
       Meteor.call("ajouteMessage", post);
@@ -99,18 +113,22 @@ Template.chat.events({
   }
 });
 
+// Submit du formulaire de création de channel (template channels).
 Template.channels.events({
   'submit #form-channel' : function(e) {
     e.preventDefault();
 
+    // On récupère le titre :
     var titre = $('input[name="titre-channel"]').val();
 
+    // On créé la nouvelle channel :
     var channel = {
       createur: Meteor.user().username,
       createur_id: Meteor.user()._id,
       titre: titre
     };
 
+    // Si le titre n'est pas vide on fait un appel au serveur (méthode ajouteChannel) :
     if (titre != "") {
       $('input[name="titre-channel"]').val("");
       Meteor.call("ajouteChannel", channel);
@@ -119,22 +137,27 @@ Template.channels.events({
   }
 });
 
+// Submit du formulaire d'envoi de message dans une channel :
 Template.channel.events({
   'submit #form-chat-prive' : function(e) {
     e.preventDefault();
 
+    // On récupère l'utilisateur courant ainsi que le message à envoyer :
     var pseudo = Meteor.user().username;
     var message = $('textarea[name="message-chat-prive"]').val();
 
+    // On récupère l'id de la channel qui se trouve dans l'url :
     var path = Iron.Location.get().path.split('/');
     var idchannel = path[path.length-1];
 
+    // On créé le post :
     var post = {
       contenu: message,
       ecrivain: pseudo,
       channel: idchannel
     };
 
+    // Si le message n'est pas vide on fait un appel au serveur (méthode ajouteMessage) :
     if (message != "") {
       $('textarea[name="message-chat-prive"]').val("");
       Meteor.call("ajouteMessage", post);
@@ -143,16 +166,33 @@ Template.channel.events({
   }
 });
 
+// Submit du select de channel dans le profil d'un utilisateur (template profil).
 Template.profil.events({
   'submit #form-profil' : function(e) {
     e.preventDefault();
 
+    // On récupère le pseudo et l'id de la channel :
     var path = Iron.Location.get().path.split('/');
 
     var pseudo = path[path.length-1];
     var id_channel = $('#form-profil option:selected').val();
 
+    // On fait un appel au serveur (méthode ajoutedansChannel) :
     Meteor.call("ajoutedansChannel", pseudo, id_channel);
 
+  }
+});
+
+
+//                                **************** Evenements onClic ****************
+
+
+// Suppression de la channel : clic sur X (template channels).
+Template.channels.events({
+  "click .supchannel": function(e) {
+    // On supprime les messages se trouvant dans la channel
+    Meteor.call("supprimerMessageduChannel", this);
+    // On supprime la channel en elle même
+    Meteor.call("supprimerChannel", this);
   }
 });
