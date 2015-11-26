@@ -196,13 +196,36 @@ Template.recherche.events({
     e.preventDefault();
 
     var motcle = $('input[name="motcle"]').val().replace(" ","_");
+    var type = $('input[name="recherche"]:checked').val();
 
-    var utilisateur = Meteor.users.findOne({"username" : motcle});
+    var utilisateurs;
 
-    if (utilisateur)
-      template.lastNode.innerHTML = "<ul><li><a href=\"/membre/"+utilisateur.username+"\">"+utilisateur.username+"</a><li></ul>";
+    switch (type) {
+      case "pseudo":
+        utilisateurs = Meteor.users.find({"username" : {'$regex': motcle}}).fetch();
+        break;
+        case "nom":
+          utilisateurs = Meteor.users.find({"profile.surname" : {'$regex': motcle}}).fetch();
+          break;
+        case "prenom":
+          utilisateurs = Meteor.users.find({"profile.name" : {'$regex': motcle}}).fetch();
+          break;
+      default:
+        utilisateurs = Meteor.users.find({ $or: [ {"username" : {'$regex': motcle}}, {"profile.name" : {'$regex': motcle}}, {"profile.surname" : {'$regex': motcle}}]}).fetch();
+        break;
+
+    }
+
+    var liste = "";
+
+    utilisateurs.map(function(utilisateur) {
+      liste = liste + "<li><a href=\"/membre/"+utilisateur.username+"\">"+utilisateur.username+"</a><li>";
+    });
+
+    if (utilisateurs.length != 0)
+      template.lastNode.innerHTML = "<ul>"+liste+"</ul>";
     else
-      template.lastNode.innerHTML = "<ul><li>Aucun membre ne porte ce pseudo<li></ul>";
+      template.lastNode.innerHTML = "<ul><li>Pas de résultats<li></ul>";
 
   }
 });

@@ -2,7 +2,12 @@
 
     <form id="form-recherche">
       <h2>Recherche</h2>
-      <input type="text" name="motcle" placeholder="Pseudo de la personne" required="true"/>
+      <input type="radio" name="recherche" value="nom"> Seulement un nom contenant<br>
+      <input type="radio" name="recherche" value="prenom"> Seulement un prénom contenant<br>
+      <input type="radio" name="recherche" value="pseudo"> Seulement un pseudo contenant<br>
+
+      <input type="text" name="motcle" placeholder="Pseudo de la personne" required="true"/><br><br>
+
       <input type="submit" value="Rechercher"/>
     </form>
 
