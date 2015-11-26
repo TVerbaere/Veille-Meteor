@@ -66,8 +66,6 @@ Template.channel.helpers({
     // On récupère la channel dont l'id est dans l'url :
     var channel = Channels.findOne({'_id': idchannel});
 
-    if (utilisateur) {
-      return channel.createur != id_utilisateur.username;
-    }
+    return channel.createur != utilisateur.username;
   }
 });

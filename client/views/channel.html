@@ -1,11 +1,11 @@
 <template name="channel">
 {{> channels}}
 <div id="channel-fil">
-  <h2>Channel {{channel.[0].titre}}</h2>
+  <h2>Channel {{channel.titre}}</h2>
 
   Participants :
   <ul>
-    {{#each channel.[0].utilisateurs}}
+    {{#each channel.utilisateurs}}
       <li>{{utilisateurbyId this}}
           {{#if estpasAuteur this}}
           <input type="submit" class="suputilisateur" title="supprimer" value="X"/>

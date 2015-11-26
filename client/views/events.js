@@ -39,7 +39,7 @@ Template.inscription.events({
     e.preventDefault();
 
     // Récupération des champs du formulaire d'inscription :
-    var pseudo = $('input[name="inscription-pseudo"]').val();
+    var pseudo = $('input[name="inscription-pseudo"]').val().replace(" ","_");
     var nom = $('input[name="inscription-nom"]').val();
     var prenom = $('input[name="inscription-prenom"]').val();
     var email = $('input[name="inscription-email"]').val();
@@ -71,7 +71,7 @@ Template.connexion.events({
     e.preventDefault();
 
     // Récupération des champs du formulaire de connexion :
-    var pseudo = $('input[name="connexion-pseudo"]').val();
+    var pseudo = $('input[name="connexion-pseudo"]').val().replace(" ","_");
     var mdp = $('input[name="connexion-mdp"]').val();
 
     // On essaye de se logger, en utilisant l'excellent paquet Accounts.
