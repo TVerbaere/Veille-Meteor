@@ -30,7 +30,7 @@ Router.route('/channel/:_id', {
   name: 'channel',
   data: function() {
     return {
-      channel: Channels.find({'_id': this.params._id}).fetch()
+      channel: Channels.findOne({'_id': this.params._id})
     }
   },
   onBeforeAction: function() {
