@@ -9,7 +9,7 @@ UI.registerHelper('formatDate', function(date) {
 Template.chat.helpers({
   messages_du_chat : function() {
     if (Session.get("active")) {
-      return Messages.find( {channel: null}, {sort : {heure : -1}});
+      return Messages.find( {channel: null}, {sort : {_id : -1}, limit: 20});
     }
     else
       return [];
@@ -44,7 +44,7 @@ Template.channel.helpers({
     if (Session.get("active")) {
       var path = Iron.Location.get().path.split('/');
       var idchannel = path[path.length-1];
-      return Messages.find( {channel: idchannel}, {sort : {heure : -1}});
+      return Messages.find( {channel: idchannel}, {sort : {_id : -1}, limit: 20});
     }
     else
       return [];
