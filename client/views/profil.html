@@ -1,24 +1,24 @@
 <template name="profil">
   {{> channels}}
 <div class="message">
-  <h2>Qui se cache derrière le pseudo '{{utilisateur.[0].username}}' ?</h2>
+  <h2>Qui se cache derrière le pseudo '{{utilisateur.username}}' ?</h2>
 
   <div>
-    <p>Pseudo : {{utilisateur.[0].username}}</p>
-    <p>Nom : {{utilisateur.[0].profile.surname}}</p>
-    <p>Prénom : {{utilisateur.[0].profile.name}}</p>
-    <p>Email : {{utilisateur.[0].emails.[0].address}}</p>
-    <p>Inscrit depuis : {{formatDate utilisateur.[0].createdAt}}</p>
+    <p>Pseudo : {{utilisateur.username}}</p>
+    <p>Nom : {{utilisateur.profile.surname}}</p>
+    <p>Prénom : {{utilisateur.profile.name}}</p>
+    <p>Email : {{utilisateur.emails.[0].address}}</p>
+    <p>Inscrit depuis : {{formatDate utilisateur.createdAt}}</p>
   </div>
 
-  {{#if estIdentique currentUser utilisateur.[0]}}
+  {{#if estIdentique currentUser utilisateur}}
   <form id="form-profil">
     <select>
       {{#each utilisateur_channels currentUser.username}}
       <option value="{{_id}}">{{titre}}</option>
       {{/each}}
     </select>
-    <input type="submit" value="Inviter {{utilisateur.[0].username}}"/>
+    <input type="submit" value="Inviter {{utilisateur.username}}"/>
   </form>
   {{/if}}
 </div>

@@ -14,7 +14,7 @@ Router.route('/membre/:_pseudo', {
   name: 'profil',
   data: function() {
       return {
-        utilisateur: Meteor.users.find({"username": this.params._pseudo}, {limit : 1}).fetch()
+        utilisateur: Meteor.users.findOne({"username": this.params._pseudo})
       }
   },
   onBeforeAction: function() {
