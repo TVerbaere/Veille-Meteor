@@ -21,7 +21,14 @@ Template.main.events({
   }
 });
 
-//
+// Redirection vers la recherche lors d'un clic sur le bouton "Recherche" (template main).
+Template.main.events({
+  "click .recherche": function(e) {
+      Router.go('recherche');
+  }
+});
+
+// Redirection vers l'accueil lors d'un clic sur le bouton "Accueil" (template main).
 Template.main.events({
   "click .accueil": function(e) {
       Router.go('accueil');
@@ -179,6 +186,23 @@ Template.profil.events({
 
     // On fait un appel au serveur (méthode ajoutedansChannel) :
     Meteor.call("ajoutedansChannel", pseudo, id_channel);
+
+  }
+});
+
+
+Template.recherche.events({
+  'submit #form-recherche' : function(e, template) {
+    e.preventDefault();
+
+    var motcle = $('input[name="motcle"]').val().replace(" ","_");
+
+    var utilisateur = Meteor.users.findOne({"username" : motcle});
+
+    if (utilisateur)
+      template.lastNode.innerHTML = "<ul><li><a href=\"/membre/"+utilisateur.username+"\">"+utilisateur.username+"</a><li></ul>";
+    else
+      template.lastNode.innerHTML = "<ul><li>Aucun membre ne porte ce pseudo<li></ul>";
 
   }
 });

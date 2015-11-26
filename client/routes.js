@@ -41,3 +41,14 @@ Router.route('/channel/:_id', {
       }
   }
 });
+
+Router.route('/recherche', {
+  name: 'recherche',
+  onBeforeAction: function() {
+    if (!Meteor.userId())
+      Router.go('inscription');
+      else {
+        this.next();
+      }
+  }
+});
