@@ -32,15 +32,12 @@ Meteor.methods ({
 
     // Cas possible : l'utilisateur est déja dans la channel : On ne fait rien !
     // Sinon :
-    if (tab.indexOf(id_utilisateur) == -1) {
+    if (id_channel && tab.indexOf(id_utilisateur) == -1) {
       // On l'ajoute dans le tableau des utilisateurs :
-      tab.splice(0, 0, id_utilisateur);
-
-      Channels.update({ "_id" : id_channel },{
-        $set: { "utilisateurs": tab },
-        $currentDate: { "lastModified": true }
+      Channels.update({ _id : id_channel },{
+        $push: { "utilisateurs": id_utilisateur }
       }
-      )}
+      )};
   },
 
   // Permet de supprimer les messages d'une channel spécifiée en paramètre.
@@ -54,3 +51,4 @@ Meteor.methods ({
   }
 
 });
+

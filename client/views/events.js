@@ -176,7 +176,6 @@ Template.profil.events({
 
     var pseudo = path[path.length-1];
     var id_channel = $('#form-profil option:selected').val();
-
     // On fait un appel au serveur (méthode ajoutedansChannel) :
     Meteor.call("ajoutedansChannel", pseudo, id_channel);
 
