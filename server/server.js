@@ -24,8 +24,8 @@ Meteor.methods ({
   // Permet d'ajouter un utilisateur de pseudo 'pseudo' dans une channel d'identifiant 'id_channel'.
   ajoutedansChannel : function(pseudo, id_channel) {
     // On retrouve la channel et l'utilisateur dont il est question :
-    var channel = Channels.findOne({'_id': id_channel});
-    var utilisateur = Meteor.users.findOne({'username': pseudo});
+    var channel = Channels.findOne({_id: id_channel});
+    var utilisateur = Meteor.users.findOne({username: pseudo});
 
     var id_utilisateur = utilisateur._id;
     var tab = channel.utilisateurs;
@@ -35,7 +35,7 @@ Meteor.methods ({
     if (id_channel && tab.indexOf(id_utilisateur) == -1) {
       // On l'ajoute dans le tableau des utilisateurs :
       Channels.update({ _id : id_channel },{
-        $push: { "utilisateurs": id_utilisateur }
+        $push: { utilisateurs: id_utilisateur }
       }
       )};
   },
