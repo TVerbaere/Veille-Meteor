@@ -24,8 +24,8 @@ Meteor.methods ({
   // Permet d'ajouter un utilisateur de pseudo 'pseudo' dans une channel d'identifiant 'id_channel'.
   ajoutedansChannel : function(pseudo, id_channel) {
     // On retrouve la channel et l'utilisateur dont il est question :
-    var channel = Channels.findOne({'_id': id_channel});
-    var utilisateur = Meteor.users.findOne({'username': pseudo});
+    var channel = Channels.findOne({_id: id_channel});
+    var utilisateur = Meteor.users.findOne({username: pseudo});
 
     var id_utilisateur = utilisateur._id;
     var tab = channel.utilisateurs;
@@ -36,9 +36,8 @@ Meteor.methods ({
       // On l'ajoute dans le tableau des utilisateurs :
       tab.splice(0, 0, id_utilisateur);
 
-      Channels.update({ "_id" : id_channel },{
-        $set: { "utilisateurs": tab },
-        $currentDate: { "lastModified": true }
+      Channels.update({ _id : id_channel },{
+        $push: { utilisateurs: id_utilisateur}
       }
       )}
   },
@@ -56,19 +55,16 @@ Meteor.methods ({
   // Permet de supprimer un utilisateur dont l'identifiant est spécificié en paramètre d'une channel dont l'identifiant est également spécifié.
   supprimerduChannel : function(id_utilisateur, id_channel) {
     // On retrouve la channel et l'utilisateur dont il est question :
-    var channel = Channels.findOne({'_id': id_channel});
+    var channel = Channels.findOne({_id: id_channel});
 
     var tab = channel.utilisateurs;
-    var index = 0;
 
     // Si l'utilisateur est présent dans le tableau on le supprime
-    if (index = tab.indexOf(id_utilisateur) != -1) {
+    if (tab.indexOf(id_utilisateur) != -1) {
       // On le supprime dans le tableau des utilisateurs :
-      var tab2 = tab.splice(index, 1);
 
-      Channels.update({ "_id" : id_channel },{
-        $set: { "utilisateurs": tab2 },
-        $currentDate: { "lastModified": true }
+      Channels.update({ _id : id_channel },{
+        $pop: { utilisateurs: id_utilisateur }
       }
       )}
   }
